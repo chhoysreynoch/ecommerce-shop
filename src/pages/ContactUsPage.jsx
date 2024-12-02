@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ContactUsPage = () => {
     return (
         <>
@@ -158,9 +160,9 @@ const ContactUsPage = () => {
                                             defaultValue={""}
                                         />
                                     </div>
-                                    <button type="submit" className="btn btn-primary-hover-outline">
+                                    <Link to="/ThankyouPage" className="btn btn-primary-hover-outline">
                                         Send Message
-                                    </button>
+                                    </Link>
                                 </form>
                             </div>
                         </div>

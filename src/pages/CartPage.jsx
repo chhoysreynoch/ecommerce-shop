@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const CartPage = () => {
 
@@ -44,58 +44,56 @@ const CartPage = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {products.map((item) => (
-                                            <tr key={item.id}>
-                                                <td className="product-thumbnail">
-                                                    <img
-                                                        src={item.image}
-                                                        alt="Image"
-                                                        className="img-fluid"
-                                                    />
-                                                </td>
-                                                <td className="product-name">
-                                                    <h2 className="h5 text-black">{item.title}</h2>
-                                                </td>
-                                                <td>${item.price}</td>
-                                                <td>
-                                                    <div
-                                                        className="input-group mb-3 d-flex align-items-center quantity-container"
-                                                        style={{ maxWidth: 120 }}
-                                                    >
-                                                        <div className="input-group-prepend">
-                                                            <button
-                                                                className="btn btn-outline-black decrease"
-                                                                type="button"
-                                                            >
-                                                                −
-                                                            </button>
-                                                        </div>
-                                                        <input
-                                                            type="text"
-                                                            className="form-control text-center quantity-amount"
-                                                            defaultValue={1}
-                                                            placeholder=""
-                                                            aria-label="Example text with button addon"
-                                                            aria-describedby="button-addon1"
-                                                        />
-                                                        <div className="input-group-append">
-                                                            <button
-                                                                className="btn btn-outline-black increase"
-                                                                type="button"
-                                                            >
-                                                                +
-                                                            </button>
-                                                        </div>
+                                        <tr>
+                                            <td className="product-thumbnail">
+                                                <img
+                                                    src="images/product-1.png"
+                                                    alt="Image"
+                                                    className="img-fluid"
+                                                />
+                                            </td>
+                                            <td className="product-name">
+                                                <h2 className="h5 text-black">Product 1</h2>
+                                            </td>
+                                            <td>$49.00</td>
+                                            <td>
+                                                <div
+                                                    className="input-group mb-3 d-flex align-items-center quantity-container"
+                                                    style={{ maxWidth: 120 }}
+                                                >
+                                                    <div className="input-group-prepend">
+                                                        <button
+                                                            className="btn btn-outline-black decrease"
+                                                            type="button"
+                                                        >
+                                                            −
+                                                        </button>
                                                     </div>
-                                                </td>
-                                                <td>$49.00</td>
-                                                <td>
-                                                    <a href="#" className="btn btn-black btn-sm">
-                                                        X
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        ))}
+                                                    <input
+                                                        type="text"
+                                                        className="form-control text-center quantity-amount"
+                                                        defaultValue={1}
+                                                        placeholder=""
+                                                        aria-label="Example text with button addon"
+                                                        aria-describedby="button-addon1"
+                                                    />
+                                                    <div className="input-group-append">
+                                                        <button
+                                                            className="btn btn-outline-black increase"
+                                                            type="button"
+                                                        >
+                                                            +
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>$49.00</td>
+                                            <td>
+                                                <a href="#" className="btn btn-black btn-sm">
+                                                    X
+                                                </a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -105,14 +103,14 @@ const CartPage = () => {
                         <div className="col-md-6">
                             <div className="row mb-5">
                                 <div className="col-md-6 mb-3 mb-md-0">
-                                    <button className="btn btn-black btn-sm btn-block">
+                                    <Link to="/" className="btn btn-black btn-sm btn-block">
                                         Update Cart
-                                    </button>
+                                    </Link>
                                 </div>
                                 <div className="col-md-6">
-                                    <button className="btn btn-outline-black btn-sm btn-block">
+                                    <Link to="/shop" className="btn btn-outline-black btn-sm btn-block">
                                         Continue Shopping
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                             <div className="row">

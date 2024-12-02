@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ShopPage = ( {products} ) => {
   return (
     <>
@@ -22,7 +24,7 @@ const ShopPage = ( {products} ) => {
              {/* Start Column 2 */}
              {products?.map((item) => (
               <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0" key={item.id}>
-                <a className="product-item" href="cart.html">
+                <Link to="/CartPage" className="product-item">
                   <img
                     src={item.image}
                     className="img-fluid product-thumbnail"
@@ -32,7 +34,7 @@ const ShopPage = ( {products} ) => {
                   <span className="icon-cross">
                     <img src="images/cross.svg" className="img-fluid" />
                   </span>
-                </a>
+                </Link>
               </div>
             ))}
             {/* End Column 2 */}

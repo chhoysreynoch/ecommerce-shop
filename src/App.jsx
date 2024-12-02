@@ -12,6 +12,7 @@ import { baseUrl } from "./configs/api";
 import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/ChekoutPage";
 import ThankyouPage from "./pages/ThankyouPage";
+import ScrollToTop from "./configs/ScrollToTop";
 
 function App() {
 
@@ -50,7 +51,8 @@ function App() {
   return (
     <div>
       <NavbarComponent pathname={pathname} />
-    
+
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<HomePage displayedProducts={displayedProducts} />} />
           <Route path="shop" element={<ShopPage products={products}/>} />
