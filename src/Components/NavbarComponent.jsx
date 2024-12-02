@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const NavbarComponent = ({ pathname }) => {
   return (
     <nav
@@ -62,9 +64,9 @@ const NavbarComponent = ({ pathname }) => {
               </a>
             </li>
             <li>
-              <a className="nav-link" href="cart.html">
+              <Link className="nav-link" to="/CartPage">
                 <img src="images/cart.svg" alt="cart icon" />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
