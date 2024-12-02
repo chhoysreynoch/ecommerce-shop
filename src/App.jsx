@@ -9,6 +9,9 @@ import ServicePage from "./pages/ServicePage";
 import ContactUsPage from "./pages/ContactUsPage";
 import { useEffect, useState } from "react";
 import { baseUrl } from "./configs/api";
+import CartPage from "./pages/CartPage";
+import CheckoutPage from "./pages/ChekoutPage";
+import ThankyouPage from "./pages/ThankyouPage";
 
 function App() {
 
@@ -51,6 +54,9 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage displayedProducts={displayedProducts} />} />
           <Route path="shop" element={<ShopPage products={products}/>} />
+          <Route path="/CartPage" element={<CartPage />} />
+          <Route path="/CheckoutPage" element={<CheckoutPage />} />
+          <Route path="/ThankyouPage" element={<ThankyouPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="about" element={<AboutUsPage/>} />
           <Route path="services" element={<ServicePage displayThreeProducts={displayThreeProducts}/>} />
