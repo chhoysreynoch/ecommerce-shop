@@ -13,6 +13,7 @@ import CartPage from "./pages/CartPage";
 import CheckoutPage from "./pages/ChekoutPage";
 import ThankyouPage from "./pages/ThankyouPage";
 import ScrollToTop from "./configs/ScrollToTop";
+import { CartItemProvider } from "./context/CardItemProvider";
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
 
     fetchData();
   }, []);
-  const displayedProducts = products.slice(0, 5);
+  const displayedProducts = products.slice(0, 7);
   const displayThreeProducts = products.slice(0, 3);
 
   console.log("all products ", products)
@@ -50,6 +51,8 @@ function App() {
 
   return (
     <div>
+      <CartItemProvider>
+
       <NavbarComponent pathname={pathname} />
 
       <ScrollToTop />
@@ -66,6 +69,7 @@ function App() {
         </Routes>
       
       <FooterComponent pathname={pathname} />
+      </CartItemProvider>
     </div>
   );
 }
