@@ -30,7 +30,7 @@ const ShopPage = ( {products} ) => {
                     className="img-fluid product-thumbnail"
                   />
                   <h3 className="product-title">{item.title}</h3>
-                  <strong className="product-price">{item.price}</strong>
+                  <strong className="product-price">${item.price}</strong>
                   <span className="icon-cross">
                     <img src="images/cross.svg" className="img-fluid" />
                   </span>
