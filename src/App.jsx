@@ -14,6 +14,7 @@ import CheckoutPage from "./pages/ChekoutPage";
 import ThankyouPage from "./pages/ThankyouPage";
 import ScrollToTop from "./configs/ScrollToTop";
 import { CartItemProvider } from "./context/CardItemProvider";
+import Product from "./pages/Product";
 
 function App() {
 
@@ -59,6 +60,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage displayedProducts={displayedProducts} />} />
           <Route path="shop" element={<ShopPage products={products}/>} />
+          <Route path="/Product/:id" element={<Product />} />
           <Route path="/CartPage" element={<CartPage />} />
           <Route path="/CheckoutPage" element={<CheckoutPage />} />
           <Route path="/ThankyouPage" element={<ThankyouPage />} />

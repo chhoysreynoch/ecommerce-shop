@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
 const HomePage = ({ displayedProducts }) => {
+
   return (
     <>
 
@@ -61,7 +63,7 @@ const HomePage = ({ displayedProducts }) => {
             {/* Start Column 2 */}
               {displayedProducts?.map((item) => (
                 <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0" key={item.id}>
-                  <Link to="/CartPage" className="product-item">
+                  <Link to={`/Product/${item.id}`} className="product-item">
                     <img
                       src={item.image}
                       className="img-fluid product-thumbnail"

@@ -24,7 +24,7 @@ const ShopPage = ( {products} ) => {
              {/* Start Column 2 */}
              {products?.map((item) => (
               <div className="col-12 col-md-4 col-lg-3 mb-5 mb-md-0" key={item.id}>
-                <Link to="/CartPage" className="product-item">
+                <Link to={`/Product/${item.id}`} className="product-item">
                   <img
                     src={item.image}
                     className="img-fluid product-thumbnail"
