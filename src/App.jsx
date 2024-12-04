@@ -44,8 +44,8 @@ function App() {
 
     fetchData();
   }, []);
-  const displayedProducts = products.slice(0, 7);
-  const displayThreeProducts = products.slice(0, 3);
+  const displayedProducts = products.slice(13, 20);
+  const displayThreeProducts = products.slice(5, 12);
 
   console.log("all products ", products)
 
