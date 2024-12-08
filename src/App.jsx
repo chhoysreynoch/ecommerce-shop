@@ -15,6 +15,7 @@ import ThankyouPage from "./pages/ThankyouPage";
 import ScrollToTop from "./configs/ScrollToTop";
 import { CartItemProvider } from "./context/CardItemProvider";
 import Product from "./pages/Product";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 function App() {
 
@@ -52,26 +53,28 @@ function App() {
 
   return (
     <div>
-      <CartItemProvider>
+      <PayPalScriptProvider options={{ "client-id": "AVcJ3jW1H4GUXRTqRhSLPuwhT_o_RXTf1PTtW3vzqFFPi4iFphr0VQpOIDIuQQni2Zpp35xyHu71Vem0" }}>
+        <CartItemProvider>
 
-      <NavbarComponent pathname={pathname} />
+          <NavbarComponent pathname={pathname} />
 
-      <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<HomePage displayedProducts={displayedProducts} />} />
-          <Route path="shop" element={<ShopPage products={products}/>} />
-          <Route path="/Product/:id" element={<Product />} />
-          <Route path="/CartPage" element={<CartPage />} />
-          <Route path="/CheckoutPage" element={<CheckoutPage />} />
-          <Route path="/ThankyouPage" element={<ThankyouPage />} />
-          <Route path="blog" element={<BlogPage />} />
-          <Route path="about" element={<AboutUsPage/>} />
-          <Route path="services" element={<ServicePage displayThreeProducts={displayThreeProducts}/>} />
-          <Route path="contact" element={<ContactUsPage/>} />
-        </Routes>
-      
-      <FooterComponent pathname={pathname} />
-      </CartItemProvider>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<HomePage displayedProducts={displayedProducts} />} />
+            <Route path="shop" element={<ShopPage products={products} />} />
+            <Route path="/Product/:id" element={<Product />} />
+            <Route path="/CartPage" element={<CartPage />} />
+            <Route path="/CheckoutPage" element={<CheckoutPage />} />
+            <Route path="/ThankyouPage" element={<ThankyouPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
+            <Route path="/services" element={<ServicePage displayThreeProducts={displayThreeProducts} />} />
+            <Route path="/contact" element={<ContactUsPage />} />
+          </Routes>
+
+          <FooterComponent pathname={pathname} />
+        </CartItemProvider>
+      </PayPalScriptProvider>
     </div>
   );
 }
