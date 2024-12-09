@@ -13,6 +13,17 @@ const CartPage = () => {
         navigate("/CheckoutPage");
     };
 
+    const calculateSubtotal = () => {
+        return cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0).toFixed(2);
+    };
+
+    const calculateTotal = () => {
+        const subtotal = parseFloat(calculateSubtotal());
+        const tax = subtotal * 0.1; // Example: 10% tax
+        const shipping = 20; // Example: Flat $20 shipping fee
+        return (subtotal + tax + shipping).toFixed(2);
+    };
+
     return (
         <>
             {/* Start Hero Section */}
@@ -176,7 +187,7 @@ const CartPage = () => {
                                                 <span className="text-black">Subtotal</span>
                                             </div>
                                             <div className="col-md-6 text-right">
-                                                <strong className="text-black">$230.00</strong>
+                                                <strong className="text-black">${calculateSubtotal()}</strong>
                                             </div>
                                         </div>
                                         <div className="row mb-5">
@@ -184,7 +195,7 @@ const CartPage = () => {
                                                 <span className="text-black">Total</span>
                                             </div>
                                             <div className="col-md-6 text-right">
-                                                <strong className="text-black">$230.00</strong>
+                                                <strong className="text-black">${calculateTotal()}</strong>
                                             </div>
                                         </div>
                                         <div className="row">

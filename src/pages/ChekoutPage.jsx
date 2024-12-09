@@ -1,11 +1,31 @@
 import { useNavigate } from "react-router-dom";
+import useCart from "../hooks/useCart";
+import { useState } from "react";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 
 const CheckoutPage = () => {
 
-    const navigate = useNavigate(); 
+    const { cartItems } = useCart();
+    const navigate = useNavigate();
+    const [showPayPal, setShowPayPal] = useState(false);
 
-    const handlePlaceOrder = () => {
-        navigate("/ThankYouPage"); 
+     // Calculate Subtotal
+     const orderSubtotal = cartItems
+     .reduce((acc, item) => acc + item.product.price * item.quantity, 0)
+     .toFixed(2);
+
+ const handlePlaceOrder = () => {
+     setShowPayPal(true); // Display PayPal Buttons
+ };
+
+    const handleApprove = (data, actions) => {
+        return actions.order.capture().then((details) => {
+            alert(`Transaction completed by ${details.payer.name.given_name}`);
+            console.log("Payment Details:", details);
+
+            // Here, you can save order details to your database
+            navigate("/ThankyouPage"); // Navigate to thank you page after payment
+        });
     };
 
     return (
@@ -407,33 +427,30 @@ const CheckoutPage = () => {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        Top Up T-Shirt <strong className="mx-2">x</strong> 1
-                                                    </td>
-                                                    <td>$250.00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        Polo Shirt <strong className="mx-2">x</strong> 1
-                                                    </td>
-                                                    <td>$100.00</td>
-                                                </tr>
+                                                {cartItems.map((item) => (
+                                                    <tr key={item.product.id}>
+                                                        <td>
+                                                            {item.product.title} <strong className="mx-2">x</strong> {item.quantity}
+                                                        </td>
+                                                        <td>${(item.quantity * item.product.price).toFixed(2)}</td>
+                                                    </tr>
+                                                ))}
                                                 <tr>
                                                     <td className="text-black font-weight-bold">
                                                         <strong>Cart Subtotal</strong>
                                                     </td>
-                                                    <td className="text-black">$350.00</td>
+                                                    <td className="text-black">${cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0).toFixed(2)}</td>
                                                 </tr>
                                                 <tr>
                                                     <td className="text-black font-weight-bold">
                                                         <strong>Order Total</strong>
                                                     </td>
                                                     <td className="text-black font-weight-bold">
-                                                        <strong>$350.00</strong>
+                                                        <strong>${cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0).toFixed(2)}</strong>
                                                     </td>
                                                 </tr>
                                             </tbody>
+
                                         </table>
                                         <div className="border p-3 mb-3">
                                             <h3 className="h6 mb-0">
@@ -507,13 +524,36 @@ const CheckoutPage = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="form-group">
-                                            <button
-                                                className="btn btn-black btn-lg py-3 btn-block"
-                                                onClick={handlePlaceOrder} // React Router navigation
-                                            >
-                                                Place Order
-                                            </button>
+                                        <div className="col-md-6">
+                                            {/* Payment Section */}
+                                            {!showPayPal ? (
+                                                <div className="form-group">
+                                                    <button
+                                                        className="btn btn-black btn-lg py-3 btn-block"
+                                                        onClick={handlePlaceOrder} // Show PayPal buttons
+                                                    >
+                                                        Place Order
+                                                    </button>
+                                                </div>
+                                            ) : (
+                                                <PayPalButtons
+                                                    createOrder={(data, actions) => {
+                                                        return actions.order.create({
+                                                            purchase_units: [
+                                                                {
+                                                                    amount: {
+                                                                        value: orderSubtotal, // Dynamic order total
+                                                                    },
+                                                                },
+                                                            ],
+                                                        });
+                                                    }}
+                                                    onApprove={handleApprove}
+                                                    onError={(err) => {
+                                                        console.error("PayPal Checkout Error:", err);
+                                                    }}
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 </div>
